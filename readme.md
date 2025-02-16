@@ -1,6 +1,6 @@
-## <H1 text-aligen="center">Warehouse Process and Operation Specifications</H1>
+## <center>Warehouse Process and Operation Specifications</center>
 
-## <center>Receiving process overview
+## <center>Receiving process overview</center>
 ```mermaid
 flowchart LR
     A((start)) --> B{check order validation}
@@ -100,7 +100,7 @@ The overdue batch is automatically transferred to the suspense bin.
    - Example: original batch “1234567” → enter “00001234567”.
 ---
 
-# <center>Standardized process for material returns
+# <center>Standardized process for material returns</center>
 ```mermaid
 flowchart LR
     A([start]) --> B[system initiated return]
