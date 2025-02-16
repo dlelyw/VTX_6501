@@ -1,4 +1,4 @@
-## <center>Warehouse Process and Operation Specifications
+## <center>Warehouse Process and Operation Specifications</center>
 
 ## <center>Receiving process overview
 ```mermaid
