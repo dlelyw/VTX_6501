@@ -1,6 +1,5 @@
 # Warehouse Processes and Operations Specifications
 
-[Offline version file download](https://github.com/dlelyw/VTX_6501/blob/3af045e2d37a29735882a2d014d351ff914243e6/gif/ZME2O.gif)
 
 # Material Receiving
 ## Receiving standardized process
