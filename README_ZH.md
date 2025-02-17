@@ -288,7 +288,7 @@ graph LR
 ```mermaid
 graph LR
     A[开始] --> B[PASS物料入库]
-    B --> C[工单Stage (SO#,MR单)]
+    B --> C[工单Stage SO和MR单]
     C --> D[Packing list 扫描根据工单数量分拆物料并处理数据]
     D --> E[Follow 的跟进]
     E --> F[合并核对套料]
@@ -300,7 +300,7 @@ graph LR
 ```mermaid
 graph LR
     A[开始] --> B[PASS物料入库]
-    B --> C[工单Stage (SO#, MR单)]
+    B --> C[工单Stage SO和MR单]
     C --> D[按照排期制作发料资料和发料]
     D --> E[Follow 的跟进]
     E --> F[齐套上拉]
