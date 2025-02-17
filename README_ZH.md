@@ -112,7 +112,7 @@ flowchart LR
 - [web_MES](http://10.97.245.205:92/login)
 - [web_MES_apk](http://10.97.245.205:93)
 - [web_translator](https://www.deepl.com/zh/translator)
-- **文档类 **
+- **文档类**
 - [Invoice Number Lookup Guide.pdf](https://github.com/dlelyw/VTX_6501/blob/19b5c6346e674e532626e966f523b64e8f6b57c0/files/pdf/Invoice%20Number%20Lookup%20Guide.pdf)  
 - [MES Receiving.pdf](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/pdf/MES%20Receiving.pdf)
 
@@ -283,6 +283,32 @@ graph LR
 - <a href="https://github.com/dlelyw/VTX_6501/blob/c39a6921d8376c70f2af9b3e8e6fcf0235c06750/files/SmtAutoCalculated.xls" download> 自动计算文件Excle </a>
 
 ## 库存发料
+### 正常发料
+#### 流程概览
+```mermaid
+graph LR
+    A[开始] --> B[PASS物料入库]
+    B --> C[工单Stage (SO#,MR单)]
+    C --> D[Packing list 扫描根据工单数量分拆物料并处理数据]
+    D --> E[Follow 的跟进]
+    E --> F[合并核对套料]
+    F --> G[齐套上拉]
+    G --> H[结束]
+```
+### SMT发料
+#### 流程概览
+```mermaid
+graph LR
+    A[开始] --> B[PASS物料入库]
+    B --> C[工单Stage (SO#, MR单)]
+    C --> D[按照排期制作发料资料和发料]
+    D --> E[Follow 的跟进]
+    E --> F[齐套上拉]
+    F --> G[退料点数计算损耗]
+    G --> H[把资料给到文员开MR单和RN单]
+    H --> I[上架]
+    I --> J[结束]
+```
 
 # 库存管理
 ## 周期性物料盘点
