@@ -88,7 +88,7 @@ flowchart LR
 
 
 ### 5. Proceso IQC para la transcripción
-***WMS 4.2**
+* **WMS 4.2**
     - Navegue hasta el menú de funciones:  
         - `Location` → `Move location` → `Introducir lote` → `Introducir nueva ubicación` → `Guardar`
     - Especificación de la introducción del número de lote :
