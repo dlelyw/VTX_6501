@@ -35,10 +35,10 @@ graph LR
     - Hacer clic en el ícono de reloj 🕥 en la esquina superior izquierda o presionar `F8` para ejecutar.
     - [SO_released_order_UP.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_UP.gif)
 
-::: alert-danger
-**Nota**:
+
+> **Nota**:
 Todas las órdenes cargadas en SAP deben ser exitosas. Si alguna falla, es necesario contactar a PMC inmediatamente. Los errores comunes incluyen que el número de SO haya sido eliminado o no esté liberado.
-:::
+
 
 ### 3. Imprimir la documentación de despacho
 

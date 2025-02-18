@@ -30,10 +30,10 @@ graph LR
     - 点击左上角闹钟图标🕥或按`F8`执行
     - [SO_released_order_UP.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_UP.gif)
 
-::: alert-danger
-**注意**：
+
+> **注意**：
 所有上传到SAP的工单号，需要全部成功才可以，如果失败，需要找PMC立马处理。一般情况为SO#被删，或者没有释放。
-:::
+
 
 ### 3. 打印发料资料
 

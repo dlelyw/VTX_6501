@@ -90,9 +90,9 @@ graph LR
     - [stock_02.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/stock_02.gif)
 
 ---
-::: alert-success
-**SAP Command Collection**
+
+> **SAP Command Collection**
 > [SAP_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/SAP_Code.md)
-:::
+
 
 ---

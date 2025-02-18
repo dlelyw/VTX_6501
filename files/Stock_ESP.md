@@ -90,9 +90,8 @@ graph LR
 
 ---
 
-::: alert-success
-**Conjunto de comandos SAP**
+
+> **Conjunto de comandos SAP**
 > [SAP_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/SAP_Code.md)
-:::
 
 --- 

@@ -30,10 +30,10 @@ graph LR
     - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
     - [SO_released_order_UP.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_UP.gif)
 
-::: alert-danger
-**Note**:
+
+> **Note**:
 All work order numbers uploaded to SAP must be successful. If any fail, contact PMC immediately for resolution. Common issues include deleted SO# or unapproved releases.
-:::
+
 
 ### 3. Print Material Dispatch Documents
 
