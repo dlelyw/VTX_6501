@@ -1,13 +1,11 @@
-# Warehouse Processes and Operations Specifications
+# Warehouse processes and practices
 
-
-# Material Receiving
-## Receiving standardized process
-### Process overview
+# Receiving
+## Process overview
 ```mermaid
 flowchart LR
-    A((start)) --> B{checklist validation}
-    B --> |PO valid and up to delivery date | C[Execute Collection]
+    A((start)) --> B{check order validation}
+    B --> |PO valid and up to delivery date | C[Execute Receipt]
     B --> |PO is invalid/not on delivery date | D[return to supplier]
     C --> E{Physical Receipt}
     E -->|Quantity Specification Match| F[System Entry]
@@ -15,7 +13,7 @@ flowchart LR
     F --> H[Label Generation]
     H --> I[Paste Labeling]
     I --> J{IQC Inspection}
-    J --> |Inspection Passed | K[Shelf in Warehouse]
+    J --> |Inspection Passed| K[Shelf in Warehouse]
     J --> |Inspection Failed| L[Quality Review]
     L --> M[RTV Processing]
     L --> N[Special Pick Approval]
@@ -26,164 +24,127 @@ flowchart LR
 ```
 
 
-### 1. Order checking operation (SAP system operation)
-* **SAP system **
-    - Enter the transaction code `ZME2O`.
-    - Enter the delivery order information in the “Plant” and “PO” fields.
-    - Click on the alarm clock icon in the upper left corner 🕥 or press `F8`.
-    - Key information quadruple check:
+
+## 1. Check Order Operation (SAP System Operation)
+*  **SAP System**
+    - Enter transaction code `ZME2O`
+    - Input delivery note information in the "Plant" and "PO" fields
+    - Click the alarm clock icon 🕥 at the top left or press `F8` to execute
+    - Key information verification:
        - ✅ Material code consistency
        - ✅ Order quantity consistency
-       - ✅ Delivery date validity (compare OA DATE)
-       - ✅ System lead time and physical label consistency
-    - [ZME2O.gif](https://github.com/dlelyw/VTX_6501/blob/0ecf0e8decf70686fdc0656ab4f7a64b32ba7241/files/gif/ZME2O.gif)
+       - ✅ Delivery date validity (compare with OA DATE)
+       - ✅ System delivery date matches physical label
+    - [ZME2O.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/ZME2O.gif)
 
 
 > **Exception Handling**:
-> 🚨 When there is “PO countless/no delivery date”, immediately suspend the receiving process and contact the supplier to coordinate the process.
+> 🚨 If "PO not found/delivery date not reached" appears, immediately pause the receiving process and contact the supplier for coordination
 
 
-### 2. Receiving point count standardization
+## 2. Receiving and Counting Standards
 1. Three-way comparison:
-   - Physical package label
+   - Physical packaging label
    - Supplier delivery note
    - SAP system order
-2. appearance quality inspection:
-   - 🔍 Check the package integrity
-   - ⚠️ Rule out abnormalities such as deformation/damage/moisture etc.
-3. Post-signing operation:
-   - Post-signing operation: Label the location of the waiting area (format: `QA01` or `QA02`).
-   - Goods are moved to the yellow inspection area.
+2. Appearance quality inspection:
+   - 🔍 Check packaging integrity
+   - ⚠️ Exclude deformities/damages/moisture anomalies
+3. Post-receiving operations:
+   - Attach the pending inspection area location label (format: `QA01` or `QA02`)
+   - Transfer goods to the yellow pending inspection area
    
 
 
-### 3. Post-signing operation: Post the QA locator tag (format: `QA01` or `QA02`).
-**WMS 4.2 system** 1.
+## 3. Inventory Posting Operation
+*  **WMS 4.2 System**
     1. Data entry:
-       - Input Invoice No. → Packing List No. → PO No. → `[ Enter ]` in order.
-    2. Packaging Matching:
-       - Match the physical material number/quantity in the upper right view area
-       - The cursor is positioned to the receiving quantity field
+       - Enter invoice number → packing list number → PO number → `[ Enter ]`
+    2. Container matching:
+       - Match physical material number/quantity in the top-right view area
+       - Position the cursor to the receiving quantity field
     3. Packaging information confirmation:
-       - Enter the actual arrival package specifications (number of boxes/packing units)
-    4. System Operation:
-       - Click `[ Save ]` to generate the batch number.  
-       - The generated batch number is written to the document.
-    5. [InRT_101.gif](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/gif/InRT_101.gif)       
+       - Enter actual arrival packaging specifications (number of boxes/packaging unit)
+    4. System operation:
+       - Click `[ Save ]` to generate a batch number  
+       - Write the generated batch number on the document
+    5. [InRT_101.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/InRT_101.gif)       
 
-> **Prompt**:
-> Temporary Storage Warehouse Query Instruction: ZMM138 Overdue unaccounted batches are automatically transferred to temporary storage status Waiting for expiration Accepted to normal warehouse and then passed the order to IQC.
-
-
-
-### 4. Label Posting Specifications
-* Label Positioning.
-    - Upper right corner of the package, 30cm clean area
-    - Label positioning: 30cm clean area in upper right corner of package
-* Posting requirements.
-    - One label for each item, do not cover the original factory marking
-    - Batch number must be fully visible
- 
-
-
-### 5. Over-the-counter IQC processes
-* WMS 4.2 System
-    - Navigate to the function menu:  
-        - `Location` → `Move location` → `Enter batch` → `Enter new location` → `Save`.
-    - Batch number entry specification :
-        - Format requirements: fixed 10-digit number
-        - Complementary rules: leading complement “0”.  
-        - Example: Original batch “1234567” → Enter “00001234567”.
-     -  [Movelocation323.gif](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/gif/Movelocation323.gif)
-
-> **attachment**  **<a href="https://github.com/dlelyw/VTX_6501/blob/0ecf0e8decf70686fdc0656ab4f7a64b32ba7241/files/gif/Download%20File%20Example.gif">Example of all file downloads</a>**
-- **software category**
-- [WMS.exe](https://github.com/dlelyw/VTX_6501/blob/19b5c6346e674e532626e966f523b64e8f6b57c0/files/apps/WMS.exe)
-- [DFMS.exe （MES Printing Services）](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/DFMS.exe)
-- [Hairpin Label Printing Software.exe](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/Hairpin%20Label%20Printing%20Software.exe)
-- [Herramienta de inicio de sesión específica.exe](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/Herramienta%20de%20inicio%20de%20sesión%20específica.exe)
-- [wms_release_1.3.7.apk （mobile version）](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/wms_release_1.3.7.apk)
-- [dlelwprint.exe（Arbitrary text printing）](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/dlelwprint.exe)
-- [MESAPP_PRO.apk（MES Mobile Edition）](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/MESAPP_PRO.apk)
-- [dlelyw.exe（backup version）](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/dlelyw.exe)
-- **Online Tools**
-- [web_MES](http://10.97.245.205:92/login)
-- [web_MES_apk](http://10.97.245.205:93)
-- [web_translator](https://www.deepl.com/zh/translator)
-- **file class**  
-- [Invoice Number Lookup Guide.pdf](https://github.com/dlelyw/VTX_6501/blob/19b5c6346e674e532626e966f523b64e8f6b57c0/files/pdf/Invoice%20Number%20Lookup%20Guide.pdf)  
-- [MES Receiving.pdf](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/pdf/MES%20Receiving.pdf)
+> **Tip**:
+> Temporary storage query command: ZMM138 Overdue unposted batches are automatically transferred to temporary storage status, waiting for expiration, then received into normal storage and passed to IQC
 
 ---
-# Returned to vendor
+
+# Return to Supplier
 ## Process overview
 ```mermaid
 flowchart LR
-    A([start]) --> B[system initiated return]
-    B --> C[Collecting Returns]
-    C --> D[Returns count into returns bin]
-    D --> E[Returns to Vendor]
+    A([start]) --> B[“system initiated return”]
+    B --> C[“Collect Returns”]
+    C --> D[“Returns count into returns bin”]
+    D --> E[“Returns to Vendor”]
     E --> F([end])
 ```
     
 
-## 1. System-initiated returns
-* **Execution frequency**: daily timed operation
-  1. Login to Notes and SAP system
-  2. Enter the Returns module
-  3. Download the list of returns for the day
-  4. collect these returns to the RTV warehouse
-> **Hints**:
-> An RTV bin is an area or warehouse in a warehouse that is dedicated to handling Return To Vendor (RTV) merchandise. It is an important link in the supply chain and warehouse management for storing and managing merchandise that needs to be returned to suppliers.
+## 1. System-Initiated Returns
+* **Execution Frequency**: Daily scheduled operation
+  1. Log in to Notes and SAP systems
+  2. Navigate to the "Returns" module
+  3. Download the daily return list
+  4. Collect these returns to the RTV warehouse
+> **Note**:
+> The RTV warehouse refers to a specific area or warehouse dedicated to handling Return To Vendor (RTV) goods. It is a crucial part of supply chain and warehouse management, primarily used for storing and managing goods that need to be returned to suppliers.
 
 
-## 2. Collection of Returns Processing
+## 2. Handling Collected Returns
 
-### 2.1 MRB Returns Collection Processing
-* **System Login and Downloading Information
-   - Open the Notes system and find the menu `MX IQC Inspection Document on... `
-   - Find the button `Gen Report` and click on it, select the serial number `5 Sotre Reject Report`.
-   - Follow the downloaded information to the IQC to collect the return.
-   - [RTV_MRB.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_MRB.gif)
-### 2.2 RN Returns Collection Process
-* **System login and download information**
-   - Open SAP and enter the transaction code `ZIMWH`.
-   - Enter `6501` in the `Plant` field.
-   - Click on the alarm clock icon in the upper left corner 🕥 or press `F8` to execute.
-   - Select all the data to be returned and download it to a local form.
-   - Go to IQC RN room to collect the returns to RTV bin as per the returns list.
-   - [RTV_RN.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_RN.gif)
+### 2.1 MRB Return Collection Process
+* **System Login and Data Download**
+   - Open the Notes system and locate the menu `MX IQC Inspection Document on...`
+   - Click the `Gen Report` button and select option `5 Store Reject Report`
+   - Use the downloaded data to collect returns from IQC
+   - [RTV_MRB.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_MRB.gif)
 
-## 3 Returns into the returns bin
-* **SAP system***
-   - Open SAP Enter transaction code `MB1B`.
-   - Enter `Doc.Header Text in the field Enter date and return type` → `Plant enter 6501` → `Movement type enter 311` → `Storage Loation enter JB01(RN)/JA01(MRB)`
-   - Press the Enter key on the keyboard to go to the next screen
-   - Enter `Material enter material number` → `Quantity enter quantity` → `Batch enter batch` → `Rcvg SLoc enter destination of move` in field
+### 2.2 RN Return Collection Process
+* **System Login and Data Download**
+   - Open SAP and enter transaction code `ZIMWH`
+   - In the "Plant" field, enter `6501`
+   - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+   - Select all pending return data and download it to a local spreadsheet
+   - Follow the return list to collect returns from the IQC RN room and move them to the RTV warehouse
+   - [RTV_RN.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_RN.gif)
+
+## 3. Entering Return Quantities into the Return Warehouse
+* **SAP System**
+   - Open SAP and enter transaction code `MB1B`
+   - In the fields, enter `Doc.Header Text` (input date and return type) → `Plant` (input `6501`) → `Movement type` (input `311`) → `Storage Location` (input `JB01` for RN or `JA01` for MRB)
+   - Press Enter to proceed to the next screen
+   - In the fields, enter `Material` (input material number) → `Quantity` (input quantity) → `Batch` (input batch number) → `Rcvg SLoc` (input destination location)
    - Save
-   - [RTV_movelocation.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_movelocation.gif)
+   - [RTV_movelocation.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_movelocation.gif)
 
-## 4 Returned to vendor
-* **Notes system***
-    - Open the Notes system and find the menu `MX Delivery Order on MEXCMS11`.
-    - Select `New` in the upper left corner and click on
+## 4. Returning Goods to Suppliers
+* **Notes System**
+    - Open the Notes system and locate the menu `MX Delivery Order on MEXCMS11`
+    - Click the `New` button in the top-left corner
     - Fill in the data:
-         1. Click the `add` button in the center left to select the supplier or material to be returned. 2.
-         2. `Goods Ready Pick Date * :` Click both to select the return date. 3.
-         3. `Region * :` Select the place where you want to return the goods.
-         4. `CC to PUR/PMT *: `Copy the email to the relevant PUR and PMT.
-         5. `Prepayment *:` Select `No`.
-         6. `Carrier *:` Select or enter `LOCAL`.
-         7. Select the appropriate approving officer
+         1. Click the `add` button in the middle-left section to select the supplier or material to be returned
+         2. `Goods Ready Pick Date *:` Click both fields and select the return date
+         3. `Region *:` Select the return location
+         4. `CC to PUR/PMT *:` Copy the email to the relevant PUR and PMT
+         5. `Prepayment *:` Select `No`
+         6. `Carrier *:` Select or enter `LOCAL`
+         7. Select the appropriate approver
     - Submit to PUT or PMT for approval
-    - Print 2 copies of the return form (2 signed by the vendor, 1 for the warehouse and 1 for the vendor). 
-    - There is no example for the 6591. The operation is the same with the 9291. [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_tovender_9291.gif)
+    - Print two copies of the return form (supplier signs both, one for the warehouse and one for the supplier)
+    - No example for 6591; use 9291 as the operation is the same [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_tovender_9291.gif)
 
 ---
+
 # Work Order Issuance
 
 ## Release "SO" Work Order Process
-
 ### Process Overview
 ```mermaid
 graph LR
@@ -196,110 +157,344 @@ graph LR
     F --> G[End]
 ```
 
-### 1. View “SO” work order forms that need to be released.
-***Notes system***
-    - E-mail the release form for the day's work orders that PMC sends out each day. General `SO release form For 2/13a (B1)/(B2)`.
-    - Create a table locally with only two columns `Plant` `SO`.
-    - Put all work orders to be released in local Excel `Save`.
-    - [SO_released_order_list.gif](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/gif/SO_released_order_list.gif)
-    - [Release of SO.xls](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/Release%20of%20SO.xls)
+### 1. View the "SO" Work Order Table to be Released
+* **Notes System**
+    - Check the daily work order release list sent by PMC via email, usually titled `SO release form For 2/13a (B1)/(B2)`
+    - Create a local table with only two columns: `Plant` and `SO`
+    - Save all work orders to be released in a local Excel file
+    - [SO_released_order_list.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_list.gif)
+    - [Release of SO.xls](https://github.com/dlelyw/VTX_6501/blob/main/files/Release%20of%20SO.xls)
 
-### 2. Uploading work orders to the SAP system
-***SAP system***
-    - Open SAP and enter the transaction code `ZMF60A`.
-    - Press the `Scanner Issue Order` button
-    - Select the radio button `Upload`. 
-    - Put the path to the Excel saved in the first step in the input box after `File Name`.
-    - Click on the alarm clock icon in the upper left corner 🕥 or press `F8` to execute it
-    - [SO_released_order_UP.gif](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/gif/SO_released_order_UP.gif)
+### 2. Upload Work Orders to SAP System
+* **SAP System**
+    - Open SAP and enter transaction code `ZMF60A`
+    - Click the `Scanner Issue Order` button
+    - Select the `Upload` radio button
+    - Enter the path of the Excel file saved in the first step in the `File Name` field
+    - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+    - [SO_released_order_UP.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_UP.gif)
 
 ::: alert-danger
 **Note**:
-All the work order numbers uploaded to SAP need to be all successful before they can be released, if they fail, you need to find PMC to deal with them immediately. The general situation is that the SO# is deleted, or not released.
+All work order numbers uploaded to SAP must be successful. If any fail, contact PMC immediately for resolution. Common issues include deleted SO# or unapproved releases.
 :::
 
-### 3. Print out the dispatch information
+### 3. Print Material Dispatch Documents
 
-#### 1. Print out the material dispatching information
-* **SAP system
-    - Open SAP and enter transaction code `ZCPK01A`.
-    - In `Plant`, enter `6501`.
-    - `Production Order` Enter the number of the work order to be released. You can enter multiple rows.
-    - `sort by` select `summarized pick list` and leave everything else unselected.
-    - Click on the alarm clock icon in the upper left corner 🕥 or press `F8` to execute.
-    - Select `List` → `Print` → `Select Printer to Print` → Select `Immediately` for the print time.
-    - Or press the keyboard shortcut `Ctrl + P`.
-    - [SO_released_order_print.gif](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/gif/SO_released_order_print.gif)
+#### 1. Print Material Dispatch Documents
+* **SAP System**
+    - Open SAP and enter transaction code `ZCPK01A`
+    - In the `Plant` field, enter `6501`
+    - In the `Production Order` field, enter the work order numbers to be released (multiple lines allowed for the same set of work orders)
+    - In `sort by`, select `summarized Pick list` and leave all other options unchecked
+    - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+    - Select the top-left menu `List` → `Print` → `Choose the printer` → Set print time to `Immediately`
+    - Alternatively, use the keyboard shortcut `Ctrl + P`
+    - [SO_released_order_print.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_print.gif)
 
-#### 2. Print “pack list” information
-***SAP system***
-    - Open SAP and enter transaction code `ZCPK01A`.
-    - In `Plant`, enter `6501`.
-    - `Production Order` Enter the work order number to be released, you can enter it in multiple lines, and enter it in the same set of work orders.
-    - `sort by` select `Follow list` and leave everything else unselected.
-    - Click on the alarm clock icon in the upper left corner 🕥 or press `F8` to execute.
-    - Select `List` → `Print` → `Select Printer to Print` → Select `Immediately` for the print time.
-    - Or press the keyboard shortcut `Ctrl + P`.
-    - [SO_released_order_print_pick_list.gif](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/gif/SO_released_order_print_pick_list.gif)
+#### 2. Print "Pack List" Documents
+* **SAP System**
+    - Open SAP and enter transaction code `ZCPK01A`
+    - In the `Plant` field, enter `6501`
+    - In the `Production Order` field, enter the work order numbers to be released (multiple lines allowed for the same set of work orders)
+    - In `sort by`, select `Follow list` and leave all other options unchecked
+    - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+    - Select the top-left menu `List` → `Print` → `Choose the printer` → Set print time to `Immediately`
+    - Alternatively, use the keyboard shortcut `Ctrl + P`
+    - [SO_released_order_print_pick_list.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_print_pick_list.gif)
 
-### 4. Download information locally
-#### 1. Download labeling information to be printed
-* **SAP system**
-    - Open SAP and enter transaction code `ZCPK01A`.
-    - In `Plant`, enter `6501`.
-    - `Production Order` Enter the number of the work order to be released, you can enter it in multiple rows.
-    - `sort by` select `summarized pick list` and leave everything else unselected.
-    - Click on the alarm clock icon in the upper left corner 🕥 or press `F8` to execute.
-    - Select the top left menu `List` → `Save/Send` → `Local Flie.... ` → `Text with Tabs`.
-    - Select the storage location Select Excel for the format
-    - [SO_released_order_print_downexcle.gif](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/gif/SO_released_order_print_downexcle.gif)
-    
+### 4. Download Documents Locally
+
+#### 1. Download Pending Label Printing Data
+* **SAP System**
+    - Open SAP and enter transaction code `ZCPK01A`
+    - In the `Plant` field, enter `6501`
+    - In the `Production Order` field, enter the work order numbers to be released (multiple lines allowed for the same set of work orders)
+    - In `sort by`, select `summarized Pick list` and leave all other options unchecked
+    - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+    - Select the top-left menu `List` → `Save/Send` → `Local File..` → `Text with Tabs`
+    - Choose the save location and select Excel format
+    - [SO_released_order_print_downexcle.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_print_downexcle.gif)
+
 #### 2. Download Follow List
-* **SAP system**
-    - Open SAP and enter the transaction code `ZCPK01A`.
-    - In `Plant`, enter `6501`.
-    - `Production Order` Enter the number of the work order to be released, you can enter it in multiple rows and enter it in the same set of work order.
-    - `sort by` select `Follow list` and `Follow list > 0` and leave all the rest unselected.
-    - Click on the alarm clock icon in the upper left corner 🕥 or press `F8`.
-    - The `Follow list` file is automatically saved to the path address next to `Follow list > 0`.
-    - Find this file and send it to PMC.
-    - [SO_released_order_print_followlist.gif](https://github.com/dlelyw/VTX_6501/blob/68caeff4796d38c39a59355d96ecc5e7a46c8f6f/files/gif/SO_released_order_print_followlist.gif)
- 
-#### 3. SMT information download
-* **SAP system**
+* **SAP System**
+    - Open SAP and enter transaction code `ZCPK01A`
+    - In the `Plant` field, enter `6501`
+    - In the `Production Order` field, enter the work order numbers to be released (multiple lines allowed for the same set of work orders)
+    - In `sort by`, select `Follow list` and `Follow list > 0`, and leave all other options unchecked
+    - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+    - The `Follow list` file will automatically save to the path next to `Follow list > 0`
+    - Locate this file and send it to PMC
+    - [SO_released_order_print_followlist.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_print_followlist.gif)
+
+#### 3. SMT Data Download
+* **SAP System**
     - Open the SO list sent by PMC
-    - Copy the SMT-specific description of the SO that starts with PCB and SMD and ends with R layer.
-        - Method 1 `CO03' can download single SO# Unreleased SO# can also be downloaded.
-            - Open SAP and enter the transaction code `CO03`.
-            - Double click on the SO to enter the details screen.
-            - Click on the toolbar icon named `Component Overview`.
-            - Click on the `Component` icon again.
-            - Right-click to download the information locally
-            -Method 2 `ZCPK01 
-        - Method 2 `ZCPK01` Multiple SO# can be downloaded in batch Need to be released and uploaded before downloading.
-            - Open SAP and enter transaction code `ZCPK01A`.
-            - In `Plant` enter `6501`
-            - `Production Order` Enter the work order number to be released, you can enter it in multiple lines, and enter it in the same work order.
-            - `sort by` select `Follow list` and leave everything else unselected.
-            - Click on the alarm clock icon in the upper left corner 🕥 or press `F8` to execute.
-            - Saving data locally
-        - Organize the downloaded SMT data.
-        - You only need the number and quantity and delete the material with zero quantity and the material with R8 at the end of the number.
-        - utilization[SmtAutoCalculated.xls](https://github.com/dlelyw/VTX_6501/blob/1aa59501516b797085faff3d34d238b0180b1f1f/files/SmtAutoCalculated.xls)Calculated data
-        - Make a distribution document according to the template[Sample SMT warehouse information.xls](https://github.com/dlelyw/VTX_6501/blob/1aa59501516b797085faff3d34d238b0180b1f1f/files/Sample%20SMT%20warehouse%20information.xls)
-        - There's a 10-minute video file in two packages. Download it locally and unzip it. [smt_document.7z.001](https://github.com/dlelyw/VTX_6501/blob/61d592a90bb72a70cf308b40459955676a4896af/files/mp4/smt_document.7z.001) [smt_document.7z.002](https://github.com/dlelyw/VTX_6501/blob/61d592a90bb72a70cf308b40459955676a4896af/files/mp4/smt_document.7z.002)
+    - Copy SOs with descriptions starting with PCB or SMD and ending with R layer
+        - Method 1: `CO03` (Can download single SO#, including unapproved SO#)
+            - Open SAP and enter transaction code `CO03`
+            - Double-click the SO to enter the details page
+            - Click the toolbar icon named `Component Overview`
+            - Click the `Component` icon again
+            - Right-click to download the data locally
+        - Method 2: `ZCPK01` (Can batch download multiple SO#, requires release and upload)
+            - Open SAP and enter transaction code `ZCPK01A`
+            - In the `Plant` field, enter `6501`
+            - In the `Production Order` field, enter the work order numbers to be released (multiple lines allowed for the same set of work orders)
+            - In `sort by`, select `Follow list` and leave all other options unchecked
+            - Click the alarm icon 🕥 in the top-left corner or press `F8` to execute
+            - Save the data locally
+        - Organize the downloaded SMT data
+        - Keep only the material number and quantity, and delete materials with zero quantity and those ending with R8
+        - Use [SmtAutoCalculated.xls](https://github.com/dlelyw/VTX_6501/blob/main/files/SmtAutoCalculated.xls) to calculate the data
+        - Create a dispatch document based on the template [Sample SMT warehouse information.xls](https://github.com/dlelyw/VTX_6501/blob/main/files/Sample%20SMT%20warehouse%20information.xls)
+        - A 10-minute video file is available in two parts. Download and extract to watch: [smt_document.7z.001](https://github.com/dlelyw/VTX_6501/blob/main/files/mp4/smt_document.7z.001) [smt_document.7z.002](https://github.com/dlelyw/VTX_6501/blob/main/files/mp4/smt_document.7z.002)
 
-### 5. Printing of dispatch labels
-***dlelywpp_Impresión de etiquetas de horquilla program***
-    - Open the downloaded material
-    - Save as Excle file
-    - Open the software `dlelywpp_Impresión de etiquetas de horquilla.exe`.
-    - Drag and drop the file into the program
+### 5. Print Dispatch Labels
+* **dlelywpp_Hairpin Label Printing Software**
+    - Open the downloaded data
+    - Save it as an Excel file
+    - Open the software `dlelywpp_Hairpin Label Printing Software.exe`
+    - Drag and drop the file into the software
     - Print all labels
-    - [Hairpin Label Printing Software.exe](https://github.com/dlelyw/VTX_6501/blob/78761c82f6bacd105d83a0eeb12adb896d5ab8bc/files/apps/Hairpin%20Label%20Printing%20Software.exe)
-    - [SO_released_order_printlable.gif](https://github.com/dlelyw/VTX_6501/blob/650857b8bae306f793834e8798b6d0e8f078812c/files/gif/SO_released_order_printlable.gif)
+    - [Hairpin Label Printing Software.exe](https://github.com/dlelyw/VTX_6501/blob/main/files/apps/Hairpin%20Label%20Printing%20Software.exe)
+    - [SO_released_order_printlable.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_printlable.gif)
 
-> **attachment** **<a href="https://github.com/dlelyw/VTX_6501/blob/0ecf0e8decf70686fdc0656ab4f7a64b32ba7241/files/gif/Download%20File%20Example.gif">Example of all file downloads</a>**
-- **file class**
-- [Guidelines for Printing Warehouse Dispatch Labels（bilingualism）.pdf](https://github.com/dlelyw/VTX_6501/blob/b14a691dc7da014fbe7fc158a1661fea28ffd2f2/files/pdf/Guidelines%20for%20Printing%20Warehouse%20Dispatch%20Labels（bilingualism）.pdf)
-- [SMT Dispatch Guidelines.pdf](https://github.com/dlelyw/VTX_6501/blob/b14a691dc7da014fbe7fc158a1661fea28ffd2f2/files/pdf/SMT%20Dispatch%20Guidelines.pdf)
+> **Attachments** **<a href="https://github.com/dlelyw/VTX_6501/blob/0ecf0e8decf70686fdc0656ab4f7a64b32ba7241/files/gif/Download%20File%20Example.gif">Download Example for All Files</a>**
+- **Documents**
+- [Guidelines for Printing Warehouse Dispatch Labels（bilingualism）.pdf](https://github.com/dlelyw/VTX_6501/blob/main/files/pdf/Guidelines%20for%20Printing%20Warehouse%20Dispatch%20Labels（bilingualism）.pdf)
+- [SMT Dispatch Guidelines.pdf](https://github.com/dlelyw/VTX_6501/blob/main/files/pdf/SMT%20Dispatch%20Guidelines.pdf)
+
+---
+
+# Inventory Control
+
+## MR and RN Forms
+### Process Overview
+```mermaid
+graph LR
+    A[Start] --> B[Initiate MR and RN Forms]
+    B --> C[Create MR Form]
+    B --> D[Create RN Form]
+    C --> E[Approval]
+    D --> E[Approval]
+    E --> F[System Deduction for MR Form and Addition for RN Form]
+    E --> G[Initiation Failed]
+    F --> H[End]
+    G --> H[End]
+```
+### 1. Create MR or RN Form
+* **Notes System and SAP System**
+    - Open the `MX MR & RN` system
+    - Click the `New MR` button, or `NEW RN` for RN
+    - Select `Type` as `Departmental Drawing` and click `OK`
+    - Choose `Reason Code` (as needed)
+    - Select the department
+    - Enter the production line number (if applicable for the production department)
+    - Enter the corresponding customer code in `Customer`
+    - Enter remarks in `Remake`
+    - Enter part number and quantity in `PN` and `Qty`
+    - If there are too many, use the `Import` tool to import the required data, only fill in the part number and quantity in the table
+    - After completing the above steps, initiate the approval and wait for the relevant leaders to approve, then use SAP
+    - **MR Form**
+        - Enter transaction code `ZMMMR` in SAP
+        - Enter the MR number generated in `MR NO` and `6501` in `Plant`
+        - After entering the interface, check the materials that need to be deducted
+        - Click `Post Goods Issue`
+    - **RN Form**
+        - Enter transaction code `ZRNWH` in SAP
+        - Enter the RN number generated in `MR/RN Number` and `6501` in `Plant`
+        - After entering the interface, check the materials that need to be added
+        - Select `Select Batch` from the toolbar
+        - Then check the material, enter the location in `SLoc`, and click `OK`
+        - Click `Post Goods Issue`
+    - [mr_new.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/mr_new.gif)
+    - [mr_deductions.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/mr_deductions.gif)
+    
+
+**Common MR Form `Reason Codes`** The approver is the corresponding department head (All RN Types are not selected)
+
+| No. | Code | Department | Production Line |                                            Remarks                                             |
+| --- | ---- | ---------- | --------------- | ---------------------------------------------------------------------------------------------- |
+| 1   | SA   | Warehouse  |                 | Inventory adjustment, periodic inventory discrepancies, shared material balancing              |
+| 2   | SA   | Production |                 | PROD DISCREPANCY + B9821201680 Production discrepancy + discrepancy number                     |
+| 3   | LB   | Warehouse  |                 | Used for packing 43LED lights                                                                  |
+| 4   | LB   | SMT        | 1035            | 012986,012247,012082,011530,k10098,KLA881,KOA879 over-issued boards returned to warehouse      |
+| 5   | LE   | SMT        | 1001            | 8/7/2024 SMD shared material balancing                                                         |
+| 6   | GF   | PMC        |                 | No-demand materials, scrap disposal.                                                           |
+| 7   | G0   | PMC        |                 | Sent to customs for inspection, batteries cannot be used before the test report is issued.     |
+| 8   | G3   | PMC        |                 | Outsourced test material balancing, outsourced test material balancing, outsourced consumables |
+
+**Common RN Form `Reason Codes`** Commonly used RN forms, the approver is the corresponding department head (All RN Types are selected as "Return to warehouse")
+
+| No. | Code | Department | Production Line |                                                                          Remarks                                                                           |
+| --- | ---- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | SA   | Warehouse  |                 | August periodic inventory discrepancies, good materials returned to warehouse, shared material balancing (PASS materials do not require IOC re-inspection) |
+| 2   | LE   | SMT        | 1001            | Shared material balancing for machine operation (PASS materials do not require IOC re-inspection)                                                          |
+| 3   | G0   | Warehouse  |                 | Shared material balancing for machine operation (PASS materials do not require IOC re-inspection)                                                          |
+| 4   | G0   | PMC        |                 | NEC Recycling Package，good materials returned to warehouse                                                                                                 |
+
+## Periodic Material Inventory
+### Monthly Inventory for Category A Materials
+* **Frequency** **`Monthly`**
+    - **SAP System**
+    - Enter transaction code `ZPP096`
+    - Enter `6501` in the `Plant` field
+    - Check the box `Only 80% Material`
+    - Click the alarm clock icon 🕥 or press `F8` to execute
+    - Save the data locally
+    - Organize and print the data (sort by part number first, then by location)
+    - [stock_Aitems.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/stock_Aitems.gif)
+
+### Bi-weekly Inventory for High-value Materials Starting with 02, 15, 29
+* **Frequency** **`Bi-weekly`**
+    - **SAP System**
+    - Enter transaction code `MB52`
+    - In the `Material` field, enter `02*`, `15*`, and `29*` in separate lines
+    - Enter `6501` in the `Plant` field
+    - Click the alarm clock icon 🕥 or press `F8` to execute
+    - Save the data locally
+    - Organize the data (use SMT auto-sum tool for summation)
+    - Print the data
+    - [stock_02.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/stock_02.gif)
+
+---
+::: alert-success
+**SAP Command Collection**
+> [SAP_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/SAP_Code.md)
+:::
+
+---
+
+# Finished Goods Inbound and Outbound
+## Process Overview
+```mermaid
+graph LR
+    A[Start] --> B[Receive FG Receipt]
+    B --> C[PDA Scan SN for Inbound]
+    C --> D[PDA Scan SN for Loading]
+    D --> E[End]
+```
+## FG IN
+### FG Scan SN for Inbound
+* **WMS Mobile Version**
+    - Receive the FG order and finished goods from the production department.
+    - First, run VTS for the FG order:
+        1. **Check the status of the work order**
+            - Enter transaction code `CO03` in SAP.
+            - Check if the third word in `Sys.Status` is `DLV`. DLV indicates that VTS has confirmed the completion of the work order; otherwise, VTS needs to be run.
+        2. **Deduct quantities**
+            - Open a separate window in SAP and enter transaction code `ZMB1A`.
+            - Enter `6501` in the `Plant` field.
+            - In the `Order` field, enter all the work orders viewed in `CO03`.
+            - Click the clock icon 🕥 in the top-left corner or press `F8` to execute.
+        3. **Run VTS**
+            - Open the MES system [MES](http://10.224.245.101:8080/Index.aspx#).
+            - Navigate to the last menu item `SAP`.
+            - Select `A02.Confirmation`.
+            - In the `Order Number:` field, enter the work order number (confirm the output from the bottom to the top based on the work orders viewed in `CO03`).
+            - **Press Enter**.
+            - In the `Quantity:` field, enter the quantity to be confirmed.
+            - Click `Save`. The result will be displayed in `Result[SAP message]`.
+            - Return to SAP `CO03` and refresh.
+            - Check `Sys.Status`; the third word should now be `DLV`.
+            - [vts.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts.png)
+    - **Inbound**
+        1. PDA Scan for Inbound  [wms.apk (Mobile Version)](https://github.com/dlelyw/VTX_6501/blob/main/files/apps/wms_release_1.3.7.apk)
+            - Log in to the PDA (Server address: 10.224.245.101:8085).
+            - Select the menu `01-FG In`.
+            - In `SN Type`, select Customer SN.
+            - In `FG No`, enter the FG order number.
+            - In `Doc No`, enter the document number. If there is none, enter the last 4 digits of the work order number.
+            - In `FG Order`, enter the work order number.
+            - Press Enter.
+            - `Total Qty` will automatically populate with the quantity.
+            - In `P/N`, enter the finished goods part number.
+            - In `Location`, enter the location.
+            - In `Scan SN`, scan the finished goods box number.
+            - After scanning all box numbers, save. [pda_fgin01.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/pda_fgin01.png) [pda_fgin02.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/pda_fgin02.png)
+        2. Manual Inbound in SAP (Only for customers who do not require box numbers)
+            - Enter transaction code `MB31` in SAP. [mb31.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/mb31.png)
+            - In `Movement Type`, enter 101.
+            - In `Order`, enter the work order number.
+            - In `Plant`, enter 6501.
+            - In `Storage Loc.`, enter the inbound location.
+            - Press Enter.
+            - Then modify the quantity to be entered.
+            - Save.
+            - A prompt will appear to generate a box number.
+            - Click the bottom-right button in the toolbar to automatically generate a box number.
+            - Save.
+
+## FG OUT
+### FG Scan SN for Outbound
+* **View Shipping List**
+    - Enter transaction code `ZSP1A` in SAP.
+    - In `Planned GI Date`, enter a date a few days prior.
+    - In `Shipping Point`, enter S650.
+    - In `Sales Organization`, enter 6501.
+    - In `GI Status`, enter A (A indicates not completed).
+    - Click the clock icon 🕥 in the top-left corner or press `F8` to execute.
+    - [ZSP1A.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/ZSP1A.png)
+* **Outbound**
+    1. PDA Scan for Outbound
+        - Log in to the PDA (Server address: 10.224.245.101:8085).
+        - Select the menu `03-FG Out`.
+        - In `SN Type`, select Customer SN.
+        - In `DN`, enter the DN number.
+        - Press Enter.
+        - `DN Qty` will automatically populate with the quantity.
+        - In `Scan SN`, scan the finished goods box number.
+        - `Scan Qty` will automatically count the scanned box numbers.
+        - Save. [pad_fgout.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/pad_fgout.png)
+            - The SAP shipping interface will automatically synchronize the `Pick Up` status.
+            - If synchronization does not occur for a long time,
+            - Use SAP transaction code `ZSD046`.
+            - In `Sales Organization`, enter 6501.
+            - In `DN`, enter the shipping DN.
+            - Click the clock icon 🕥 in the top-left corner or press `F8` to execute.
+            - Then refresh the shipping interface to see the `Pick Up` status as successful (C).
+            - [ZSD046.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/ZSD046.png)
+    2. Manual Outbound in SAP (Only for customers who do not require box numbers or for self-pickup)
+        - Enter transaction code `ZSP1A` in SAP.
+        - In `Planned GI Date`, enter a date a few days prior.
+        - In `Shipping Point`, enter S650.
+        - In `Sales Organization`, enter 6501.
+        - In `GI Status`, enter A (A indicates not completed).
+        - Click the clock icon 🕥 in the top-left corner or press `F8` to execute.
+        - Refer to this image (if it is finished goods, select the box number). [fg_handcarry.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/fg_handcarry.gif)
+
+## RMA
+* **SAP System**
+    - **Normal Work Order Inbound**
+        - Query the normal work order number for this RMA, usually in the format 65100006335.
+        - Use the normal work order number to enter the quantity into the system using SAP transaction code MB31.
+        - In `Movement Type`, enter 101.
+        - In `Order`, enter the normal work order number.
+        - In `Plant`, enter the corresponding warehouse.
+        - In `Storage Loc.`, enter the inbound location.
+        - Click the clock icon 🕥 in the top-left corner or press `F8` to execute.
+        - Then proceed to the inbound information interface.
+        - Enter the quantity to be inbound and press Enter.
+        - [rma_1.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/rma_1.png) [rma_2.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/rma_2.png)
+    - **Deduct Quantity to Rework Order**
+        - Use SAP transaction code MB1A.
+        - In `Movement Type`, enter 261.
+        - In `Plant`, enter 6501.
+        - In `Storage Location`, enter FG01.
+        - Find `To Order`, click it, and enter the rework order number.
+        - Then save.
+        - Subsequent operations are the same as normal scanning for inbound.
+        - [vts_p_3.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_3.png)
+
+## Manual Quantity Transfer for Auxiliary Materials
+* **SAP System**
+    - Use SAP `CO03` to check the work order. Materials with part numbers ending in P*** indicate running VTS for the production department (from bottom to top).
+    - Open the production department's SAP and enter `CO11N`. Enter the SO# and press Enter.
+    - In `Order`, enter the work order number.
+    - Click `Actual Data`.
+    - Then click `Goods Movements`.
+    - Select all data.
+    - Click `batch determination` to confirm.
+    - Then save.
+    - [vts_p_1.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_1.png) [vts_p_2.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_2.png) [vts_p_3.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_3.png)
