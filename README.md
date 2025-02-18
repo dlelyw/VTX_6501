@@ -179,7 +179,7 @@ flowchart LR
     - No hay ejemplo para 6591; usar 9291 ya que la operación es la misma [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_tovender_9291.gif)
        
 ---
-
+``
 # Despacho de materiales de la orden de trabajo
 
 ## Proceso de liberación de la orden de venta "SO"
@@ -217,10 +217,9 @@ graph LR
     - Hacer clic en el ícono de reloj 🕥 en la esquina superior izquierda o presionar `F8` para ejecutar.
     - [SO_released_order_UP.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/SO_released_order_UP.gif)
 
-::: alert-danger
-**Nota**:
+
+> **Nota**:
 Todas las órdenes cargadas en SAP deben ser exitosas. Si alguna falla, es necesario contactar a PMC inmediatamente. Los errores comunes incluyen que el número de SO haya sido eliminado o no esté liberado.
-:::
 
 ### 3. Imprimir la documentación de despacho
 
@@ -402,10 +401,8 @@ graph LR
 
 ---
 
-::: alert-success
-**Conjunto de comandos SAP**
+> **Conjunto de comandos SAP**
 > [SAP_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/SAP_Code.md)
-:::
 
 --- 
 
