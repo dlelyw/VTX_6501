@@ -179,7 +179,7 @@ flowchart LR
     - No hay ejemplo para 6591; usar 9291 ya que la operación es la misma [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_tovender_9291.gif)
        
 ---
-``
+
 # Despacho de materiales de la orden de trabajo
 
 ## Proceso de liberación de la orden de venta "SO"
