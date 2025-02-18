@@ -1,4 +1,4 @@
-## Returned to vendor
+# Returned to vendor
 ## Process overview
 ```mermaid
 flowchart LR

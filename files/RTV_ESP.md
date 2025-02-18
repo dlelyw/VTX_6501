@@ -1,4 +1,4 @@
-## Volver al proveedor
+# Volver al proveedor
 ## Resumen del proceso
 ```mermaid
 flowchart LR
@@ -61,4 +61,3 @@ flowchart LR
     - Enviar a PUT o PMT para su aprobación
     - Imprima dos copias del formulario de devolución (dos firmadas por el proveedor, una para el almacén y otra para el proveedor). 
     - No hay ejemplo para el 6591. La operación es la misma con el 9291. [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_tovender_9291.gif)
-        
