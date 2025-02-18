@@ -27,7 +27,7 @@ flowchart LR
    - 打开Notes系统找到菜单`MX IQC  Inspection  Document on...`
    - 找到按钮`Gen Report`单击，选择序号`5 Sotre Reject Report`
    - 按照下载的资料去IQC哪里收集退货
-   - [RTV_MRB.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_MRB.gif)
+   - [RTV_MRB.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_MRB.gif)
 ### 2.2 RN退货收集流程
 * **系统登录与下载资料**
    - 打开SAP 输入事务代码 `ZIMWH`
@@ -35,7 +35,7 @@ flowchart LR
    - 点击左上角闹钟图标🕥或按`F8`执行
    - 选择所有待退货的数据 下载到本地表格
    - 按照退货清单去IQC RN房间收集退货到RTV仓
-   - [RTV_RN.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_RN.gif)
+   - [RTV_RN.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_RN.gif)
 
 ## 3 退货数入退货仓
 * **SAP系统**
@@ -44,7 +44,7 @@ flowchart LR
    - 按下键盘回车键进入下一个界面
    - 在字段输入`Material 输入料号` → ` Quantity 输入数量` → `Batch 输入批次` → `Rcvg SLoc 输入移动的目的位置`
    - 保存
-   - [RTV_movelocation.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_movelocation.gif)
+   - [RTV_movelocation.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_movelocation.gif)
 
 ## 4 退货至供应商
 * **Notes系统**
@@ -60,5 +60,5 @@ flowchart LR
          7. 选择相应的签批人员
     - 提交给PUT或者PMT签批
     - 打印退货单2份(供应商签名两份 仓库和供应商各留一份) 
-    - 6591无例子 使用9291 操作是一样的 [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/d82ba10a0527b64e0d6fc44a51e3f5ec0db2ce7d/files/gif/RTV_tovender_9291.gif)
-        
+    - 6591无例子 使用9291 操作是一样的 [RTV_tovender_9291.gif](https://github.com/dlelyw/VTX_6501/blob/main/files/gif/RTV_tovender_9291.gif)
+       
