@@ -401,9 +401,10 @@ graph LR
 
 ---
 
-> **Conjunto de comandos SAP**
+> **Directivas relacionadas**
 > [SAP_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/SAP_Code.md)
-
+> [Movement_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/Movement_Code.md)
+> [MR_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/MR_Code.md)
 --- 
 
 # Entrada y Salida de Productos Terminados

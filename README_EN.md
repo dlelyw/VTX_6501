@@ -360,9 +360,10 @@ graph LR
 
 ---
 
-> **SAP Command Collection**
+> **Related commands**
 > [SAP_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/SAP_Code.md)
-
+> [Movement_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/Movement_Code.md)
+> [MR_Code.md](https://github.com/dlelyw/VTX_6501/blob/main/files/MR_Code.md)
 
 ---
 
