@@ -1,4 +1,4 @@
-# Procesos y prácticas de almacén
+<div style="text-align: center;"> <h1>Procesos y prácticas de almacén</h1> </div>
 
 # Recepción
 ## Resumen de procesos

@@ -1,4 +1,5 @@
-# Despacho de materiales de la orden de trabajo
+<div style="text-align: center;"> <h1>Despacho de materiales de la orden de trabajo</h1> </div>
+
 
 ## Proceso de liberación de la orden de venta "SO"
 ### Resumen del proceso

@@ -1,4 +1,4 @@
-# Inventory Control
+<div style="text-align: center;"> <h1>Inventory Control</h1> </div>
 
 ## MR and RN Forms
 ### Process Overview

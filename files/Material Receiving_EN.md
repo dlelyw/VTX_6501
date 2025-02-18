@@ -1,4 +1,5 @@
-# Warehouse processes and practices
+<div style="text-align: center;"> <h1>Warehouse processes and practices</h1> </div>
+
 
 # Receiving
 ## Process overview

@@ -1,4 +1,5 @@
-# Finished Goods Inbound and Outbound
+<div style="text-align: center;"> <h1>Finished Goods Inbound and Outbound</h1> </div>
+
 ## Process Overview
 ```mermaid
 graph LR

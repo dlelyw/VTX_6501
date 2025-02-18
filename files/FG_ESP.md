@@ -1,4 +1,5 @@
-# Entrada y Salida de Productos Terminados
+<div style="text-align: center;"> <h1>Entrada y Salida de Productos Terminados</h1> </div>
+
 ## Resumen del Proceso
 ```mermaid
 graph LR

@@ -1,4 +1,5 @@
-# Control de Inventario
+<div style="text-align: center;"> <h1>Control de Inventario</h1> </div>
+
 
 ## Formularios MR y RN
 ### Resumen del Proceso

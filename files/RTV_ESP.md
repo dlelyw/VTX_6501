@@ -1,4 +1,5 @@
-# Volver al proveedor
+<div style="text-align: center;"> <h1>Volver al proveedor</h1> </div>
+
 ## Resumen del proceso
 ```mermaid
 flowchart LR

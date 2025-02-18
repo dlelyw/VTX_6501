@@ -1,4 +1,5 @@
-# 成品出入库
+<div style="text-align: center;"> <h1> 成品出入库</h1> </div>
+
 ## 流程概述
 ```mermaid
 graph LR

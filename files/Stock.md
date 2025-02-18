@@ -1,4 +1,4 @@
-# 库存管控
+<div style="text-align: center;"> <h1>库存管控</h1> </div>
 
 ## MR单和RN单
 ### 流程概览
