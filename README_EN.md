@@ -325,7 +325,7 @@ graph LR
 | 7   | G0   | PMC        |                 | Sent to customs for inspection, batteries cannot be used before the test report is issued.     |
 | 8   | G3   | PMC        |                 | Outsourced test material balancing, outsourced test material balancing, outsourced consumables |
 
-**Common RN Form `Reason Codes`** Commonly used RN forms, the approver is the corresponding department head (All RN Types are selected as "Return to warehouse")
+**Common RN Form `Reason Codes`** The approver is the corresponding department head (All RN Types are selected as "Return to warehouse")
 
 | No. | Code | Department | Production Line |                                                                          Remarks                                                                           |
 | --- | ---- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
