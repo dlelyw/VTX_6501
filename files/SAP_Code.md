@@ -1,6 +1,6 @@
 <div style="text-align: center;"> <h1>SAP_Code</h1> </div>
 
-|   SAP Code    |      中文描述（官方术语）      |                       Descripción en español                       |             Description in English             |                             Example of operation                              |
+|   SAP Code    |           中文描述           |                       Descripción en español                       |             Description in English             |                             Example of operation                              |
 | ------------- | --------------------------- | ------------------------------------------------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------- |
 | ZSERIAL_IV    | 成品序列号库存查询            | Consulta de inventario de números de serie de productos terminados | Finished product serial number inventory query |                                                                               |
 | ZSERIAL       | 扫描序列号查询                | Consulta de números de serie escaneados                            | Scanned serial number query                    |                                                                               |
