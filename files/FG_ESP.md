@@ -132,3 +132,6 @@ graph LR
     - Hacer clic en `batch determination` para confirmar.
     - Luego guardar.
     - [vts_p_1.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_1.png) [vts_p_2.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_2.png) [vts_p_3.png](https://github.com/dlelyw/VTX_6501/blob/main/files/png/vts_p_3.png)
+    
+> **Documentación sobre directrices informáticas para WMS**
+> [wms user manual V2.1.pdf](https://github.com/dlelyw/VTX_6501/blob/main/files/pdf/wms%20user%20manual%20V2.1.pdf)
